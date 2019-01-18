@@ -1,8 +1,9 @@
-package com.hudeing.atmconsultoria;
+package com.hudeing.atmconsultoria.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +14,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hudeing.atmconsultoria.R;
+import com.hudeing.atmconsultoria.fragment.ClientesFragment;
+import com.hudeing.atmconsultoria.fragment.PrincipalFragment;
+import com.hudeing.atmconsultoria.fragment.ServicosFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,6 +28,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Carrega tela principal
+        PrincipalFragment principalFragment = new PrincipalFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameContainer, principalFragment);
+        fragmentTransaction.commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -81,10 +93,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_principal) {
-            // Handle the camera action
+
+            PrincipalFragment principalFragment = new PrincipalFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frameContainer, principalFragment);
+            fragmentTransaction.commit();
+
         } else if (id == R.id.nav_servicos) {
 
+            ServicosFragment servicosFragment = new ServicosFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frameContainer, servicosFragment);
+            fragmentTransaction.commit();
+
         } else if (id == R.id.nav_clientes) {
+
+            ClientesFragment clientesFragment = new ClientesFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frameContainer, clientesFragment);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_contato) {
 
